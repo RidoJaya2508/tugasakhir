@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portofolio Rido Jaya Gustian</title>
+
+  <!-- Google Fonts & Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom right, #01f3e7, #cbabee);
+      color: #fff;
+      scroll-behavior: smooth;
+    }
+
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1001;
+      top: 0;
+      left: 0;
+      background-color: rgba(4, 250, 238, 0.95);
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar a {
+      padding: 12px 24px;
+      text-decoration: none;
+      font-size: 20px;
+      color: white;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: rgba(28, 4, 243, 0.863);
+    }
+
+    .closebtn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      font-size: 36px;
+      color: white;
+      cursor: pointer;
+    }
+
+    .hamburger {
+      font-size: 30px;
+      cursor: pointer;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1002;
+      display: none;
+      color: white;
+    }
+
+    header {
+      background-color: rgba(30, 0, 60, 0.8);
+      padding: 20px 40px;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 120px 20px 80px;
+      position: relative;
+    }
+
+    .hero img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin-bottom: 20px;
+    }
+
+    .hero h2 span {
+      color: #ffdd57;
+    }
+
+    .wave {
+      position: relative;
+      width: 100%;
+      margin-top: -80px;
+    }
+
+    section {
+      padding: 60px 40px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .bar {
+      background: #fff2;
+      width: 100%;
+      height: 20px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .bar div {
+      height: 100%;
+      text-align: right;
+      color: white;
+      padding-right: 10px;
+      line-height: 20px;
+      font-size: 14px;
+    }
+
+    .html { width: 90%; background: #e44d26; }
+    .css { width: 80%; background: #264de4; }
+    .js { width: 70%; background: #f0db4f; color: black; }
+
+    .project-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .project-card {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      width: 300px;
+      border-radius: 8px;
+      backdrop-filter: blur(4px);
+    }
+
+    .project-card img {
+      width: 100%;
+      border-radius: 6px;
+      margin-bottom: 10px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: auto;
+    }
+
+    input, textarea {
+      margin: 10px 0;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+    }
+
+    button {
+      background: #ffdd57;
+      color: black;
+      border: none;
+      padding: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    footer {
+      background: rgba(11, 241, 3, 0.8);
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #topBtn {
+      display: none;
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background-color: #ffdd57;
+      color: black;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 99;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .project-container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar" id="sidebar">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+  </div>
+
+  <span class="hamburger" onclick="openSidebar()">&#9776;</span>
+
+  <div id="particles-js"></div>
+
+  <header>
+    <div class="logo">Rido Jaya Gustian</div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img src="images/rido.jpeg"Foto Profil" width="200"/>
+    <h2><span id="typing"></span></h2>
+    <p>Web Developer | Portofolio</p>
+  </section>
+
+  <div class="wave">
+    <svg viewBox="0 0 1440 120"><path fill="#ff00ff" fill-opacity="1" d="M0,64L1440,0L1440,0L0,0Z"></path></svg>
+  </div>
+
+  <section id="about" data-aos="fade-up">
+    <h2>Tentang Saya</h2>
+    <p>Selama menempuh pendidikan di jurusan Sistem Informasi, saya telah mempelajari berbagai konsep penting mulai dari manajemen basis data, perancangan sistem, hingga analisis kebutuhan pengguna. Saya juga aktif mengembangkan proyek-proyek pribadi dan mengikuti pelatihan tambahan di bidang web development, UI/UX, dan data analytics.</p>
+  </section>
+
+  <section id="skills" data-aos="fade-right">
+    <h2>Skills</h2>
+    <div class="bar"><div class="html">HTML 90%</div></div>
+    <div class="bar"><div class="css">CSS 80%</div></div>
+    <div class="bar"><div class="js">JavaScript 70%</div></div>
+  </section>
+
+  <section id="projects" data-aos="fade-up">
+    <h2>Projects</h2>
+    <div class="project-container">
+      <div class="project-card">
+        <img src="images/Screenshot (48).png" alt="Project 1"/>
+        <h3>Portfolio Site</h3>
+        <p>contoh database Portofolio.</p>
+      </div>
+      <div class="project-card">
+        <img src="images/Screenshot (49).png" alt="Project 2"/>
+        <h3>Landing Page</h3>
+        <p>Desain promosi modern dengan responsif layout.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" data-aos="fade-left">
+    <h2>Contact</h2>
+    <form>
+      <input type="text" placeholder="Nama" required/>
+      <input type="email" placeholder="Email" required/>
+      <textarea rows="4" placeholder="Pesan" required></textarea>
+      <button type="submit">Kirim</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 Rido Jaya Gustian. All rights reserved.
+  </footer>
+
+  <button id="topBtn">⬆️</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <script>
+    AOS.init();
+
+    const text = "Rido Jaya Gustian";
+    let i = 0;
+    function type() {
+      if (i < text.length) {
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, 100);
+      }
+    }
+    document.addEventListener("DOMContentLoaded", () => {
+      type();
+    });
+
+    const topBtn = document.getElementById("topBtn");
+    window.onscroll = () => {
+      topBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    };
+    topBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
+    function openSidebar() {
+      document.getElementById("sidebar").style.width = "250px";
+    }
+    function closeSidebar() {
+      document.getElementById("sidebar").style.width = "0";
+    }
+
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.4 },
+        size: { value: 3 },
+        move: { enable: true, speed: 2 }
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: true, mode: "bubble" },
+          onclick: { enable: true, mode: "push" }
+        },
+        modes: {
+          bubble: { distance: 100, size: 6, duration: 2 },
+          push: { particles_nb: 4 }
+        }
+      }
+    });
+  </script>
+</body>
+</html>
